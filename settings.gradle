@@ -1,0 +1,3 @@
+rootProject.name='BLE'
+include ':app'
+include ':blelib'
