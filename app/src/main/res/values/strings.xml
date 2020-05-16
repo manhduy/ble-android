@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">BLE</string>
+    <string name="msg_scanning">Scanning…</string>
+    <string name="msg_initialize_ble_failed">Scan failed!</string>
+    <string name="msg_scan_failed">Scan failed!</string>
+    <string name="msg_scan_success">Scan success</string>
+    <string name="msg_service_discovered">Services discovered </string>
+    <string name="msg_send_red">Send RED</string>
+    <string name="msg_send_green">Send GREEN</string>
+    <string name="msg_disconnect">Disconnect</string>
 </resources>
