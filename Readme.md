@@ -20,15 +20,15 @@ implementation fileTree(dir: 'libs', include: ['blelib.aar'])
 var bleCentral: BleCentral = BleCentral(app, this)
 ```
 
-### Start the BLE Central
-
-You can start BLE Central normally:
+### Make ViewModel implement BleCentralCallback
 
 ```kotlin
-bleCentral.start()
+class MainViewModel(app: Application) : AndroidViewModel(app), BleCentralCallback {
 ```
 
-But it is better to use viewModelScope
+### Start the BLE Central
+
+You can start BLE Central normally, but it is better to use viewModelScope:
 
 ```kotlin
 viewModelScope.launch {
@@ -38,12 +38,12 @@ viewModelScope.launch {
 }
 ```
 
-### Start the BLE Central
+### Stop the BLE Central
 
 Stop Ble Central when it is no longer using. It is the best practice to stop BLE Central in onDestroy of activity.
 
 ```kotlin
-bleCentral.start()
+bleCentral.stop()
 ```
 
 ### [Library Document](android-blelib-docs/index.html)
