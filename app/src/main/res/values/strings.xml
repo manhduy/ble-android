@@ -1,11 +1,13 @@
 <resources>
-    <string name="app_name">BLE</string>
+    <string name="app_name">BLE Central</string>
     <string name="msg_scanning">Scanning…</string>
-    <string name="msg_initialize_ble_failed">Scan failed!</string>
+    <string name="msg_initialize_ble_failed">Initialize failed!</string>
     <string name="msg_scan_failed">Scan failed!</string>
     <string name="msg_scan_success">Scan success</string>
     <string name="msg_service_discovered">Services discovered </string>
     <string name="msg_send_red">Send RED</string>
     <string name="msg_send_green">Send GREEN</string>
     <string name="msg_disconnect">Disconnect</string>
+    <string name="msg_enable_bluetooth_error">Can not start BLE Central. Please check Bluetooth permission and status. Then try again.</string>
+    <string name="btn_try_again">Try again</string>
 </resources>

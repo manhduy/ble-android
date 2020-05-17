@@ -1,9 +1,8 @@
 package com.duyha.blelib
 
-interface BleCentralListener {
-    fun onInitializeBleFailed()
+interface BleCentralCallback {
+    fun onInitializeBleFailed(errorCode: Int)
     fun onScanFailed(errorCode: Int)
-    fun onWriteCharacteristicFailed()
     fun onScanSuccess()
     fun onServicesDiscovered()
     fun onWriteRED()

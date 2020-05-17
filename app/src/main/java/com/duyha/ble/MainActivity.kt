@@ -5,9 +5,10 @@ import android.bluetooth.*
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -24,8 +25,20 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViewModel() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.messageId.observe(this, androidx.lifecycle.Observer {
+        viewModel.messageId.observe(this, Observer {
             tvMsg.text = getString(it)
+        })
+        viewModel.blePerNotGranted.observe(this, Observer {
+            viewError.visibility = View.VISIBLE
+            requestBlePermission()
+        })
+        viewModel.bleNotEnabled.observe(this, Observer { event ->
+            event.getContentIfNotHandled()?.let {
+                if (it) {
+                    viewError.visibility = View.VISIBLE
+                    enableBluetooth()
+                }
+            }
         })
     }
 
@@ -34,31 +47,49 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(enableBtIntent, RC_ENABLE_BLUETOOTH)
     }
 
+    private fun requestBlePermission() {
+        ActivityCompat.requestPermissions(this,
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+            RC_ACCESS_FINE_LOCATION_PERMISSION)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == RC_ENABLE_BLUETOOTH) {
-            viewModel.onBluetoothResult()
+            viewError.visibility = View.GONE
+            viewModel.startBleCentral()
         }
     }
 
-    private fun hasBlePermission(): Boolean {
-        return if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            if (! ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
-                ActivityCompat.requestPermissions(this,
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                    RC_ACCESS_FINE_LOCATION)
+    override fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            RC_ACCESS_FINE_LOCATION_PERMISSION -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    viewError.visibility = View.GONE
+                    viewModel.startBleCentral()
+                } else {
+                    // permission denied
+                    viewError.visibility = View.VISIBLE
+                }
+                return
             }
-            false
-        } else {
-            true
+            else -> {
+                // Ignore all other requests.
+            }
         }
     }
+
+    fun onTryAgainClick() {
+        viewError.visibility = View.GONE
+        viewModel.startBleCentral()
+    }
+
 
     companion object {
         private const val RC_ENABLE_BLUETOOTH = 1
-        private const val RC_ACCESS_FINE_LOCATION = 2
+        private const val RC_ACCESS_FINE_LOCATION_PERMISSION = 2
     }
+
 }
