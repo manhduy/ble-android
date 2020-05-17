@@ -23,7 +23,37 @@ var bleCentral: BleCentral = BleCentral(app, this)
 ### Make ViewModel implement BleCentralCallback
 
 ```kotlin
+
 class MainViewModel(app: Application) : AndroidViewModel(app), BleCentralCallback {
+    ...
+    override fun onInitializeBleFailed(errorCode: Int) {
+        // Your code
+    }
+
+    override fun onScanFailed() {
+        // Your code
+    }
+
+    override fun onScanSuccess() {
+        // Your code
+    }
+
+    override fun onServicesDiscovered() {
+       // Your code
+    }
+
+    override fun onWriteRED() {
+        // Your code
+    }
+
+    override fun onWriteGREEN() {
+        // Your code
+    }
+
+    override fun onDisconnected() {
+        // Your code
+    }
+
 ```
 
 ### Start the BLE Central
