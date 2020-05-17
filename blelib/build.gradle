@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'org.jetbrains.dokka'
 
 android {
     compileSdkVersion 29
@@ -43,4 +44,12 @@ dependencies {
 
     //Timber
     //implementation 'com.jakewharton.timber:timber:4.7.1'
+}
+
+
+
+dokka {
+    configuration {
+        androidVariants = ["debug", "release"]
+    }
 }

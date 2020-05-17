@@ -10,6 +10,12 @@ import androidx.core.content.ContextCompat
 import kotlinx.coroutines.*
 import java.util.*
 
+/**
+ * A wrapper class that implement a Ble Central
+ *
+ * @property context Context
+ * @property callback Callback handler that will receive callback events from BleCentral.
+ */
 class BleCentral(
     private val context: Context,
     private val callback: BleCentralCallback
@@ -27,6 +33,11 @@ class BleCentral(
         bluetoothAdapter = bluetoothManager.adapter
     }
 
+    /**
+     * Start Bluetooth LE scan. The scan results will be delivered through the [callback].
+     * It will automatically scan, connect, and communicate with the peripheral.
+     *
+     */
     fun start() {
         if (!hasBlePermission()) {
             callback.onInitializeBleFailed(INITIALIZE_FAILED_PERMISSION_NOT_GRANTED)
@@ -52,6 +63,10 @@ class BleCentral(
             Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
     }
 
+    /**
+     * Stop scanning and disconnect from the peripheral
+     *
+     */
     fun stop() {
         scope.cancel()
         bleScanner?.stopScan(scanCallback)
@@ -74,7 +89,7 @@ class BleCentral(
     private val scanCallback = object : ScanCallback() {
         override fun onScanFailed(errorCode: Int) {
             super.onScanFailed(errorCode)
-            callback.onScanFailed(errorCode)
+            callback.onScanFailed()
             Log.d(TAG, "onScanFailed errorCode $errorCode")
         }
 
@@ -148,7 +163,14 @@ class BleCentral(
         private const val CHAR_VAL_RED = "RED"
         private const val CHAR_VAL_GREEN = "GREEN"
 
+        /**
+         * Error code return when permission ACCESS_FINE_LOCATION is not granted
+         */
         const val INITIALIZE_FAILED_PERMISSION_NOT_GRANTED = 1
+
+        /**
+         * Error code return when bluetooth is not enabled
+         */
         const val INITIALIZE_FAILED_BLUETOOTH_NOT_ENABLED = 2
 
     }

@@ -55,7 +55,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app), BleCentralCallbac
         }
     }
 
-    override fun onScanFailed(errorCode: Int) {
+    override fun onScanFailed() {
         _messageId.postValue(R.string.msg_scan_failed)
     }
 
