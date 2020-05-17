@@ -1,0 +1,75 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>BleCentralCallback - blelib</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">blelib</a>&nbsp;/&nbsp;<a href="../index.html">com.duyha.blelib</a>&nbsp;/&nbsp;<a href="./index.html">BleCentralCallback</a><br/>
+<br/>
+<h1>BleCentralCallback</h1>
+<code><span class="keyword">interface </span><span class="identifier">BleCentralCallback</span></code>
+<p>Callback events of BleCentral</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="on-disconnected.html">onDisconnected</a></h4>
+</td>
+<td>
+<p>Callback indicating when disconnected service</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onDisconnected</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-initialize-ble-failed.html">onInitializeBleFailed</a></h4>
+</td>
+<td>
+<p>Callback indicating when initialize the ble central failed</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onInitializeBleFailed</span><span class="symbol">(</span><span class="identifier" id="com.duyha.blelib.BleCentralCallback$onInitializeBleFailed(kotlin.Int)/errorCode">errorCode</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-scan-failed.html">onScanFailed</a></h4>
+</td>
+<td>
+<p>Callback indicating when scan failed</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onScanFailed</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-scan-success.html">onScanSuccess</a></h4>
+</td>
+<td>
+<p>Callback indicating when scan successfully</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onScanSuccess</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-services-discovered.html">onServicesDiscovered</a></h4>
+</td>
+<td>
+<p>Callback indicating when the service has been discovered</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onServicesDiscovered</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-write-g-r-e-e-n.html">onWriteGREEN</a></h4>
+</td>
+<td>
+<p>Callback indicating when writing GREEN</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onWriteGREEN</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-write-r-e-d.html">onWriteRED</a></h4>
+</td>
+<td>
+<p>Callback indicating when writing RED</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onWriteRED</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

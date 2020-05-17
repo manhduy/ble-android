@@ -1,0 +1,70 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>BleCentral - blelib</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">blelib</a>&nbsp;/&nbsp;<a href="../index.html">com.duyha.blelib</a>&nbsp;/&nbsp;<a href="./index.html">BleCentral</a><br/>
+<br/>
+<h1>BleCentral</h1>
+<code><span class="keyword">class </span><span class="identifier">BleCentral</span></code>
+<p>A wrapper class that implement a Ble Central</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>A wrapper class that implement a Ble Central</p>
+<code><span class="identifier">BleCentral</span><span class="symbol">(</span><span class="identifier" id="com.duyha.blelib.BleCentral$<init>(android.content.Context, com.duyha.blelib.BleCentralCallback)/context">context</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/content/Context.html"><span class="identifier">Context</span></a><span class="symbol">, </span><span class="identifier" id="com.duyha.blelib.BleCentral$<init>(android.content.Context, com.duyha.blelib.BleCentralCallback)/callback">callback</span><span class="symbol">:</span>&nbsp;<a href="../-ble-central-callback/index.html"><span class="identifier">BleCentralCallback</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="start.html">start</a></h4>
+</td>
+<td>
+<p>Start Bluetooth LE scan. The scan results will be delivered through the <a href="#">callback</a>.
+It will automatically scan, connect, and communicate with the peripheral.</p>
+<code><span class="keyword">fun </span><span class="identifier">start</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="stop.html">stop</a></h4>
+</td>
+<td>
+<p>Stop scanning and disconnect from the peripheral</p>
+<code><span class="keyword">fun </span><span class="identifier">stop</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-i-n-i-t-i-a-l-i-z-e_-f-a-i-l-e-d_-b-l-u-e-t-o-o-t-h_-n-o-t_-e-n-a-b-l-e-d.html">INITIALIZE_FAILED_BLUETOOTH_NOT_ENABLED</a></h4>
+</td>
+<td>
+<p>Error code return when bluetooth is not enabled</p>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">INITIALIZE_FAILED_BLUETOOTH_NOT_ENABLED</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-i-n-i-t-i-a-l-i-z-e_-f-a-i-l-e-d_-p-e-r-m-i-s-s-i-o-n_-n-o-t_-g-r-a-n-t-e-d.html">INITIALIZE_FAILED_PERMISSION_NOT_GRANTED</a></h4>
+</td>
+<td>
+<p>Error code return when permission ACCESS_FINE_LOCATION is not granted</p>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">INITIALIZE_FAILED_PERMISSION_NOT_GRANTED</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
