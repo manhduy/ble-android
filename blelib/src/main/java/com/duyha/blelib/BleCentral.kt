@@ -33,10 +33,6 @@ class BleCentral(
         }
     }
 
-    fun destroy() {
-        scope.cancel()
-    }
-
     fun start() {
         if (!hasBlePermission()) {
             callback.onInitializeBleFailed(INITIALIZE_FAILED_PERMISSION_NOT_GRANTED)
@@ -62,9 +58,6 @@ class BleCentral(
             Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
     }
 
-    fun isRunning() {
-    }
-
     fun stop() {
         scope.cancel()
         bleScanner?.stopScan(scanCallback)
@@ -88,7 +81,7 @@ class BleCentral(
         override fun onScanFailed(errorCode: Int) {
             super.onScanFailed(errorCode)
             callback.onScanFailed(errorCode)
-            println("onScanFailed errorCode $errorCode")
+            Timber.d("onScanFailed errorCode $errorCode")
         }
 
         override fun onScanResult(callbackType: Int, result: ScanResult?) {
@@ -165,6 +158,4 @@ class BleCentral(
         const val INITIALIZE_FAILED_BLUETOOTH_NOT_ENABLED = 2
 
     }
-
-
 }

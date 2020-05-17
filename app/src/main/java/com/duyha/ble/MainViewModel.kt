@@ -38,6 +38,14 @@ class MainViewModel(app: Application) : AndroidViewModel(app), BleCentralCallbac
         }
     }
 
+    fun stopBleCentral() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                bleCentral.stop()
+            }
+        }
+    }
+
     override fun onInitializeBleFailed(errorCode: Int) {
         _messageId.postValue(R.string.msg_scan_failed)
         if (errorCode == BleCentral.INITIALIZE_FAILED_PERMISSION_NOT_GRANTED) {

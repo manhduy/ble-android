@@ -86,6 +86,11 @@ class MainActivity : AppCompatActivity() {
         viewModel.startBleCentral()
     }
 
+    override fun onDestroy() {
+        viewModel.stopBleCentral()
+        super.onDestroy()
+    }
+
 
     companion object {
         private const val RC_ENABLE_BLUETOOTH = 1
