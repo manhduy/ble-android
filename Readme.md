@@ -46,5 +46,4 @@ Stop Ble Central when it is no longer using. It is the best practice to stop BLE
 bleCentral.start()
 ```
 
-### Library document
-[Document](android-blelib-docs)
+### [Library Document](android-blelib-docs/index.html)
