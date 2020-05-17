@@ -22,11 +22,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.core:core-ktx:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
@@ -52,6 +54,7 @@ dependencies {
     implementation 'com.airbnb.android:lottie:3.4.0'
 
     //Ble Lib
-    implementation project(":blelib")
+    //implementation project(":blelib")
+    implementation fileTree(dir: 'libs', include: ['blelib.aar'])
 
 }

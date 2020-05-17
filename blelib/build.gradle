@@ -42,5 +42,5 @@ dependencies {
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
 
     //Timber
-    implementation 'com.jakewharton.timber:timber:4.7.1'
+    //implementation 'com.jakewharton.timber:timber:4.7.1'
 }

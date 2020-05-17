@@ -5,10 +5,9 @@ import android.bluetooth.*
 import android.bluetooth.le.*
 import android.content.Context
 import android.content.pm.PackageManager
+import android.util.Log
 import androidx.core.content.ContextCompat
 import kotlinx.coroutines.*
-import timber.log.Timber
-import timber.log.Timber.DebugTree
 import java.util.*
 
 class BleCentral(
@@ -26,11 +25,6 @@ class BleCentral(
     init {
         val bluetoothManager = context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
         bluetoothAdapter = bluetoothManager.adapter
-
-
-        if (BuildConfig.DEBUG) {
-            Timber.plant(DebugTree())
-        }
     }
 
     fun start() {
@@ -40,7 +34,7 @@ class BleCentral(
         }
         if (bluetoothAdapter == null || !bluetoothAdapter!!.isEnabled) {
             callback.onInitializeBleFailed(INITIALIZE_FAILED_BLUETOOTH_NOT_ENABLED)
-            Timber.d("onInitializeBleFailed")
+            Log.d(TAG, "onInitializeBleFailed")
         } else {
             bleScanner = bluetoothAdapter!!.bluetoothLeScanner
             bleScanner?.let {
@@ -48,7 +42,7 @@ class BleCentral(
                 val settings = ScanSettings.Builder()
                     .setScanMode(ScanSettings.SCAN_MODE_LOW_POWER).build()
                 it.startScan(listOf(scanFilter), settings, scanCallback)
-                Timber.d("startScan")
+                Log.d(TAG, "startScan")
             }
         }
     }
@@ -70,7 +64,7 @@ class BleCentral(
     private fun writeCharacteristic(gatt: BluetoothGatt, value: String) {
         val service = gatt.getService(UUID_Service)
         service?.let {
-            Timber.d("writeCharacteristic $value")
+            Log.d(TAG, "writeCharacteristic $value")
             val characteristic = service.getCharacteristic(UUID_characteristic)
             characteristic.value = value.toByteArray()
             gatt.writeCharacteristic(characteristic)
@@ -81,7 +75,7 @@ class BleCentral(
         override fun onScanFailed(errorCode: Int) {
             super.onScanFailed(errorCode)
             callback.onScanFailed(errorCode)
-            Timber.d("onScanFailed errorCode $errorCode")
+            Log.d(TAG, "onScanFailed errorCode $errorCode")
         }
 
         override fun onScanResult(callbackType: Int, result: ScanResult?) {
@@ -100,8 +94,8 @@ class BleCentral(
     private val bleGattCallback: BluetoothGattCallback = object : BluetoothGattCallback() {
         override fun onConnectionStateChange(gatt: BluetoothGatt, status: Int, newState: Int) {
             super.onConnectionStateChange(gatt, status, newState)
-            Timber.d("onConnectionStateChange status $status")
-            Timber.d("onConnectionStateChange newState $newState")
+            Log.d(TAG, "onConnectionStateChange status $status")
+            Log.d(TAG, "onConnectionStateChange newState $newState")
             if (newState == BluetoothProfile.STATE_DISCONNECTED) {
                 callback.onDisconnected()
                 scope.launch {
@@ -114,7 +108,7 @@ class BleCentral(
 
         override fun onServicesDiscovered(gatt: BluetoothGatt, status: Int) {
             super.onServicesDiscovered(gatt, status)
-            Timber.d("onServicesDiscovered status $status")
+            Log.d(TAG, "onServicesDiscovered status $status")
             callback.onServicesDiscovered()
             scope.launch {
                 writeCharacteristic(gatt, CHAR_VAL_RED)
@@ -127,9 +121,9 @@ class BleCentral(
             status: Int
         ) {
             super.onCharacteristicWrite(gatt, characteristic, status)
-            Timber.d("onCharacteristicWrite status $status")
+            Log.d(TAG, "onCharacteristicWrite status $status")
             val value = characteristic.getStringValue(0)
-            Timber.d("onCharacteristicWrite value $value")
+            Log.d(TAG, "onCharacteristicWrite value $value")
             if (value == CHAR_VAL_RED) {
                 scope.launch {
                     delay(1000L)
