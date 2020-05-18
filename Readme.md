@@ -76,4 +76,4 @@ Stop Ble Central when it is no longer using. It is the best practice to stop BLE
 bleCentral.stop()
 ```
 
-### [Library Document](android-blelib-docs/index.html)
+### [Library Document](https://manhduy.github.io/android-blelib-docs/)
